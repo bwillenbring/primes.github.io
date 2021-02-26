@@ -34,6 +34,26 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/http-vue-loader"></script>
 
+    <!-- Game -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Grab the prime numbers
+            axios.get('./js/vueComponents/prime_numbers.json').then(res => {
+                //- Store primes 
+                const primes = res.data.primes;
+                // Write in the game component 
+                $('#app').html(`<game id="prime_numbers_game_001" :primes="${JSON.stringify(primes)}"></game>`);
+                // Instantiate component as an SFC with help from vue-loader
+                var game = new window.Vue({
+                    el: '#app',
+                    components: {
+                        'game': window.httpVueLoader('./js/VueComponents/game.vue')
+                    },
+                });
+            });
+        })
+    </script>
+
     <title>Prime Numbers Game</title>
 
     <!-- Favicon -->
@@ -45,22 +65,6 @@
         <div class="row">
             <div class="container">
                 <div id="app"></div>
-                <script>$(document).ready(function () {
-                        // Grab the prime numbers
-                        axios.get('./js/vueComponents/prime_numbers.json').then(res => {
-                            //- Store primes 
-                            const primes = res.data.primes;
-                            // Write in the game component 
-                            $('#app').html(`<game id="prime_numbers_game_001" :primes="${JSON.stringify(primes)}"></game>`);
-                            // Instantiate component as an SFC with help from vue-loader
-                            var game = new window.Vue({
-                                el: '#app',
-                                components: {
-                                    'game': window.httpVueLoader('./js/VueComponents/game.vue')
-                                },
-                            });
-                        });
-                    })</script>
             </div>
         </div>
     </div>
