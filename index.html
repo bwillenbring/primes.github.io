@@ -38,19 +38,20 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Grab the prime numbers
-            // axios.get('js/vueComponents/prime_numbers.json').then(res => {
-            //     //- Store primes 
-            //     const primes = res.data.primes;
-            //     // Write in the game component 
-            //     $('#app').html(`<game id="prime_numbers_game_001" :primes="${JSON.stringify(primes)}"></game>`);
-            //     // Instantiate component as an SFC with help from vue-loader
-            //     var game = new window.Vue({
-            //         el: '#app',
-            //         components: {
-            //             'game': window.httpVueLoader('js/VueComponents/game.vue')
-            //         },
-            //     });
-            // });
+            axios.get('js/vueComponents/prime_numbers.json').then(res => {
+                //- Store primes 
+                const primes = res.data.primes;
+                // Write in the game component 
+                $('#app').html(`<game id="prime_numbers_game_001" :primes="${JSON.stringify(primes)}"></game>`);
+            });
+
+            // Instantiate component as an SFC with help from vue-loader
+            var game = new window.Vue({
+                el: '#app',
+                components: {
+                    'game': window.httpVueLoader('js/VueComponents/game.vue')
+                },
+            });
         })
     </script>
 
