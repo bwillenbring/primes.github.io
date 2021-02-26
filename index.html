@@ -47,7 +47,7 @@
                 <div id="app"></div>
                 <script>$(document).ready(function () {
                         // Grab the prime numbers
-                        axios.get('/js/vueComponents/prime_numbers.json').then(res => {
+                        axios.get('./js/vueComponents/prime_numbers.json').then(res => {
                             //- Store primes 
                             const primes = res.data.primes;
                             // Write in the game component 
